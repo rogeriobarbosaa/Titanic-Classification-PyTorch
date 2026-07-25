@@ -12,7 +12,17 @@ class NeuralNet(nn.Module):
         self.relu = nn.ReLU()
         self.l2 = nn.Linear(hidden_size, num_classes)  # recebe o tamanho da camada oculta anterior / retorna o número de classes
 
+        '''
+        nn.Linear(in_features, out_features)
+        - in_features: n° de neurônios da camada anterior, n° de pesos p/cada neurônio da camada atual
+        - out_features: n° de neurônios da camada atual, n° de pesos p/cada neurônio da camada seguinte
+
+        Obs: no caso da última camada:
+        - out_features: n° de valores da saída da rede
+        '''
+
     def forward(self, x):
         x = self.l1(x)
         x = self.relu(x)
         y_pred = self.l2(x)
+        return y_pred
