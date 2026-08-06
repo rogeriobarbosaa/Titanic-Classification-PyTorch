@@ -11,6 +11,7 @@ class NeuralNet(nn.Module):
         self.l1 = nn.Linear(input_size, hidden_size)   # recebe o número de features / retorna o tamanho da camada oculta atual
         self.relu = nn.ReLU()
         self.l2 = nn.Linear(hidden_size, num_classes)  # recebe o tamanho da camada oculta anterior / retorna o número de classes
+        self.sigmoid = nn.Sigmoid()
 
         '''
         nn.Linear(in_features, out_features)
@@ -24,5 +25,6 @@ class NeuralNet(nn.Module):
     def forward(self, x):
         x = self.l1(x)
         x = self.relu(x)
-        y_pred = self.l2(x)
+        x = self.l2(x)
+        y_pred = self.sigmoid(x)
         return y_pred
